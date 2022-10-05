@@ -1,2 +1,2 @@
 # PortSantinMystery
- Indie graphic adventure developed by a junior team of ESCAV
+ Indie graphic adventure game developed by a junior team of ESCAV

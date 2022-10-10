@@ -7,8 +7,12 @@ public class CameraMove : MonoBehaviour
 
     [SerializeField] float _FarAmount, _ZoomAmount;
     [SerializeField]float _currentTime, _duration;
-    [SerializeField] float a;
-    [SerializeField] float b;
+
+    public Transform _Target;
+    [SerializeField] float _smooth;
+    [SerializeField] Vector3 _offset;
+
+
     bool _IsFar;
     Camera _mainCamera;
     Coroutine _coroutine;
@@ -23,7 +27,16 @@ public class CameraMove : MonoBehaviour
 
     }
 
+    void FixedUpdate()
+    {
 
+        Vector3 DestinyPosition = _Target.position + _offset;
+        Vector3 SmoothMove = Vector3.Lerp(transform.position, DestinyPosition, _smooth);
+        transform.position = SmoothMove;
+
+
+        transform.LookAt(_Target);
+    }
 
     private void FarCamera()
     {
@@ -60,8 +73,7 @@ public class CameraMove : MonoBehaviour
         {
             _currentTime += Time.deltaTime;
             _mainCamera.fieldOfView = Mathf.Lerp(_mainCamera.fieldOfView, _FarAmount, _currentTime/_duration * Time.fixedDeltaTime);
-            a = _currentTime / _duration;
-            b = Mathf.Lerp(_mainCamera.fieldOfView, _FarAmount, _currentTime / _duration);
+           
             yield return null;
         }
     }
@@ -72,9 +84,7 @@ public class CameraMove : MonoBehaviour
         while (_currentTime < _duration)
         {
             _mainCamera.fieldOfView = Mathf.Lerp(_mainCamera.fieldOfView, _ZoomAmount, _currentTime / _duration * Time.fixedDeltaTime);
-            a = _currentTime / _duration;
-            b = Mathf.Lerp(_mainCamera.fieldOfView, _ZoomAmount, _currentTime / _duration);
-
+           
 
             _currentTime += Time.deltaTime;
             yield return null;

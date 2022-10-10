@@ -6,9 +6,13 @@ public class Move : MonoBehaviour
 {
 
     [SerializeField] float _speed;
+    bool isActiveZoom, isActiveFar;
 
     private void Start()
     {
+
+        isActiveFar = false;
+        isActiveZoom = true;
 
     }
 
@@ -30,14 +34,18 @@ public class Move : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Far"))
+        if(other.gameObject.CompareTag("Far") && !isActiveFar)
         {
             EventManager._cameraFar.Invoke();
+            isActiveFar = true;
+            isActiveZoom = false;
         }
 
-        if(other.gameObject.CompareTag("Zoom"))
+        if(other.gameObject.CompareTag("Zoom") && !isActiveZoom)
         {
             EventManager._cameraZoom.Invoke();
+            isActiveZoom = true;
+            isActiveFar = false;
         }
         
 

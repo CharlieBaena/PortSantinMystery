@@ -25,11 +25,18 @@ public class PlayerMovement : MonoBehaviour
     //The rigidbody of the player
     Rigidbody myRB;
 
+    //Detecte if more or less distance
+    bool isActiveZoom, isActiveFar;
+
     // Start is called before the first frame update
     void Start()
     {
         //Gets the rigidbody component from the player
         myRB = GetComponent<Rigidbody>();
+
+        //Set value
+        isActiveFar = false;
+        isActiveZoom = true;
     }
 
     // Update is called once per frame
@@ -72,5 +79,26 @@ public class PlayerMovement : MonoBehaviour
     {
         //Moves the player in a direction
         myRB.MovePosition(transform.position + (direction * speed * Time.fixedDeltaTime));
+    }
+
+
+    //This detect the triggers in the scene, change the cam fields of view
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Far") && !isActiveFar)
+        {
+            EventManager._cameraFar.Invoke();
+            isActiveFar = true;
+            isActiveZoom = false;
+        }
+
+        if (other.gameObject.CompareTag("Zoom") && !isActiveZoom)
+        {
+            EventManager._cameraZoom.Invoke();
+            isActiveZoom = true;
+            isActiveFar = false;
+        }
+
+
     }
 }

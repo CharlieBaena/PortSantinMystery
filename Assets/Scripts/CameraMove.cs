@@ -19,9 +19,19 @@ public class CameraMove : MonoBehaviour
         _IsFar = false;
 
     }
+
+
+    private void Update()
+    {
+        
+        if(Input.)
+
+    }
+
+
     private void FarCamera()
     {
-         _mainCamera.orthographicSize = _FarAmount;
+         _mainCamera.fieldOfView = _FarAmount;
         _IsFar = true;
     }
 
@@ -29,7 +39,7 @@ public class CameraMove : MonoBehaviour
     {
         if(_IsFar)
         {
-            _mainCamera.orthographicSize = _ZoomAmount;
+            _mainCamera.fieldOfView = _ZoomAmount;
             _IsFar = false;
 
         }

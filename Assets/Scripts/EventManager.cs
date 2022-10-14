@@ -9,4 +9,6 @@ public static class EventManager
     public static UnityEvent _cameraFar = new UnityEvent();
     public static UnityEvent _cameraZoom = new UnityEvent();
 
+    public static UnityEvent _Talk = new UnityEvent();
+
 }

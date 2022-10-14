@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class tester : MonoBehaviour
 {
-    public Conversation convo;
-   public void StartConvo()
+   public static Conversation convo;
+
+    private void Start()
+    {
+        EventManager._Talk.AddListener(StartConvo);
+    }
+
+    public void StartConvo()
     {
         DialogueManager.StartConversation(convo);
     }

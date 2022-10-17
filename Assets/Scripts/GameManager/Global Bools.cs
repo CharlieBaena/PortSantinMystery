@@ -12,4 +12,6 @@ public static class GlobalBools
 
     //Permitira saber el progreso del juego//
     public static bool _stage1 = true;
+
+    public static bool _DevicePreIsKeyBoard = true;
 }

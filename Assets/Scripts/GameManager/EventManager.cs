@@ -11,4 +11,7 @@ public static class EventManager
 
     public static UnityEvent _Talk = new UnityEvent();
 
+    public static UnityEvent _OpenInventory = new UnityEvent();
+    public static UnityEvent _CloseInventory = new UnityEvent();
+
 }

@@ -5,45 +5,44 @@ using UnityEngine;
 public class ToInteract : MonoBehaviour
 {
     public KeyCode _Interact, _Inventory;
-    bool _OpenInventory = false;
 
     void Update()
     {
         
-        if(GlobalBools._canTalk)
-        {
-            if(Input.GetKeyDown(_Interact))
+        if(Input.GetKeyDown(_Interact))
+          {
+            if (GlobalBools._canTalk)
             {
                 EventManager._Talk.Invoke();
             }
-        }
 
-
-        if(!_OpenInventory)
-        {
-
-            if(Input.GetKeyDown(_Inventory))
+            if(GlobalBools._canOpenDoor)
             {
+                EventManager._DoorDetect.Invoke();
+            }
+          }
+
+
+        if (Input.GetKeyDown(_Inventory))
+        {
+            if (!GlobalBools._OpenInventory)
+            {
+
                 print("Va");
-                _OpenInventory = true;
+                GlobalBools._OpenInventory = true;
                 EventManager._OpenInventory.Invoke();
 
             }
-
-        }
-        else
-        {
-
-            if (Input.GetKeyDown(_Inventory))
+            else
             {
+                
+                    GlobalBools._OpenInventory = false;
+                    EventManager._CloseInventory.Invoke();
 
-                _OpenInventory = false;
-                EventManager._CloseInventory.Invoke();
-
+                
             }
 
         }
-
 
     }
 }

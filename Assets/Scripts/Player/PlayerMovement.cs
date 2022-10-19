@@ -100,5 +100,91 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+        if(other.gameObject.CompareTag("Puerta"))
+        {
+            EventManager._StartFeedback.Invoke();
+            GlobalBools._canOpenDoor = true;
+        }
+
+        if(other.gameObject.CompareTag("Driver"))
+        {
+            EventManager._StartFeedback.Invoke();
+            GlobalBools._canTalk = true;
+            GlobalBools._driverTalking = true;
+        }
+
+        if(other.gameObject.CompareTag("Reviewer"))
+        {
+            EventManager._StartFeedback.Invoke();
+            GlobalBools._canTalk = true;
+            GlobalBools._reviewerTalking = true;
+        }
+
+        if(other.gameObject.CompareTag("Luna"))
+        {
+            EventManager._StartFeedback.Invoke();
+            GlobalBools._canTalk = true;
+            GlobalBools._lunaTalking = true;
+        }
+
+        if(other.gameObject.CompareTag("Centurion"))
+        {
+            EventManager._StartFeedback.Invoke();
+            GlobalBools._canTalk = true;
+            GlobalBools._centurionTalking = true;
+        }
+
+        if (other.gameObject.CompareTag("Jorge"))
+        {
+            EventManager._StartFeedback.Invoke();
+            GlobalBools._canTalk = true;
+            GlobalBools._jorgeTalking = true;
+        }
+
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Puerta"))
+        {
+            EventManager._StopFeedback.Invoke();
+            GlobalBools._canOpenDoor = false;
+        }
+
+        if (other.gameObject.CompareTag("Driver"))
+        {
+            EventManager._StopFeedback.Invoke();
+            GlobalBools._canTalk = false;
+            GlobalBools._driverTalking = false;
+        }
+
+        if (other.gameObject.CompareTag("Reviewer"))
+        {
+            EventManager._StopFeedback.Invoke();
+            GlobalBools._canTalk = false;
+            GlobalBools._reviewerTalking = false;
+        }
+
+        if (other.gameObject.CompareTag("Luna"))
+        {
+            EventManager._StopFeedback.Invoke();
+            GlobalBools._canTalk = false;
+            GlobalBools._lunaTalking = false;
+        }
+
+        if (other.gameObject.CompareTag("Centurion"))
+        {
+            EventManager._StopFeedback.Invoke();
+            GlobalBools._canTalk = false;
+            GlobalBools._centurionTalking = false;
+        }
+
+        if (other.gameObject.CompareTag("Jorge"))
+        {
+            EventManager._StopFeedback.Invoke();
+            GlobalBools._canTalk = false;
+            GlobalBools._jorgeTalking = false;
+        }
+
     }
 }

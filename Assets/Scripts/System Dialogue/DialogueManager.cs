@@ -14,6 +14,9 @@ public class DialogueManager : MonoBehaviour
     private static DialogueManager instance;
     private Coroutine typing;
 
+    UserActions _controls;
+    private InputAction NextLine;
+
     private void Awake()
     {
         if(instance == null)
@@ -24,6 +27,22 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        _controls = new UserActions();
+    }
+
+    private void OnEnabled()
+    {
+
+        NextLine = _controls.UI.NextLine;
+        NextLine.Enable();
+        NextLine.performed += ReadNext;
+
+    }
+
+    private void OnDisable()
+    {
+        NextLine.Disable();
 
     }
 
@@ -38,7 +57,7 @@ public class DialogueManager : MonoBehaviour
         instance.ReadNext();
     }
 
-    public void ReadNext()
+    public void ReadNext(InputAction.CallbackContext context)
     {
         if(currentIndex> currentConvo.GetLength())
         {

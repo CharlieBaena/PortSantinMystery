@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 //In case of forgetting to add the rigidbody, unity will automatically add it
 [RequireComponent(typeof(Rigidbody))]
@@ -28,7 +29,29 @@ public class PlayerMovement : MonoBehaviour
     //Detecte if more or less distance
     bool isActiveZoom, isActiveFar;
 
-    // Start is called before the first frame update
+
+    [SerializeField] UserActions _controls;
+    private InputAction move;
+    private InputAction sprint;
+
+
+    private void Awake()
+    {
+        _controls = new UserActions();
+    }
+
+    public void OnEnable()
+    {
+
+        move = _controls.Player.Movement;
+        move.Enable();
+    }
+
+    public void OnDisable()
+    {
+        move.Disable();
+    }
+
     void Start()
     {
         //Gets the rigidbody component from the player
@@ -43,7 +66,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //We ge the direction from the input horizontal (a / d)
-        direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        // direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+
+        direction = move.ReadValue<Vector2>();
     }
 
     void FixedUpdate()

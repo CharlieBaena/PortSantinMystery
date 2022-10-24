@@ -198,8 +198,8 @@ public class @UserActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c04938aa-89f2-4f03-83ac-919323659944"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": ""Press"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": ""Press,Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": ""KeyBoard and Mouse"",
                     ""action"": ""Sprint"",

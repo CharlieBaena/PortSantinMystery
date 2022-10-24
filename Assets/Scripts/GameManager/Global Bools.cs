@@ -23,5 +23,7 @@ public static class GlobalBools
     public static bool _canOpenDoor = false;
     public static bool _OpenInventory = false;
 
+    public static bool _run = false;
+
     //public static bool _DevicePreIsKeyBoard = true;
 }

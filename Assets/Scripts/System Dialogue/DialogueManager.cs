@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class DialogueManager : MonoBehaviour
         instance.dialogue.text = "";
         instance.navButtonText.text = ">";
 
-        instance.ReadNext();
+        instance.ReadNext(new InputAction.CallbackContext());
     }
 
     public void ReadNext(InputAction.CallbackContext context)

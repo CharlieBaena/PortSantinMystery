@@ -16,10 +16,10 @@ public class PlayerMovement : MonoBehaviour
 
 
     //The speed at the player moves
-    [SerializeField]
-    float speed;
+    [SerializeField] float WalkingSpeed;
+    [SerializeField] float RunningSpeed;
 
-
+   [SerializeField] float ActualSpeed;
     //The vector that holds the direction of movement
     Vector3 direction;
 
@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     //Detecte if more or less distance
     bool isActiveZoom, isActiveFar;
+    bool pressedDown;
+    
 
 
     [SerializeField] UserActions _controls;
@@ -45,11 +47,16 @@ public class PlayerMovement : MonoBehaviour
 
         move = _controls.Player.Movement;
         move.Enable();
+
+        sprint = _controls.Player.Sprint;
+        sprint.Enable();
+        sprint.performed += MoreSpeed;
     }
 
     public void OnDisable()
     {
         move.Disable();
+        sprint.Disable();
     }
 
     void Start()
@@ -67,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //We ge the direction from the input horizontal (a / d)
         // direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-
+        
         direction = move.ReadValue<Vector2>();
     }
 
@@ -88,22 +95,68 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    public void MoreSpeed(InputAction.CallbackContext context)
+    {
+
+        pressedDown = context.ReadValueAsButton();
+
+        if (pressedDown)
+        {
+            GlobalBools._run = true;
+            
+        }
+        else
+        {
+            GlobalBools._run = false;
+            print(GlobalBools._run);
+        }
+        
+    }
+
     private void AddingForceMovement()
     {
+        if (GlobalBools._run)
+        {
+            ActualSpeed = RunningSpeed;
+        }
+        else
+        {
+            ActualSpeed = WalkingSpeed;
+        }
         //Adds a force that pushes the player
-        myRB.AddForce(direction * speed);
+        myRB.AddForce(direction * ActualSpeed);
+        
     }
 
     private void VelocityMovement()
     {
+        if (GlobalBools._run)
+        {
+            ActualSpeed = RunningSpeed;
+        }
+        else
+        {
+            ActualSpeed = WalkingSpeed;
+        }
         //Stablished the velocity of the rigidbody
-        myRB.velocity = direction * speed;
+        myRB.velocity = direction * ActualSpeed;
+       
     }
 
     private void MovePositionMovement()
     {
+        if (GlobalBools._run)
+        {
+            ActualSpeed = RunningSpeed;
+        }
+        else
+        {
+            ActualSpeed = WalkingSpeed;
+        }
         //Moves the player in a direction
-        myRB.MovePosition(transform.position + (direction * speed * Time.fixedDeltaTime));
+        myRB.MovePosition(transform.position + (direction * ActualSpeed * Time.fixedDeltaTime));
+        
     }
 
 

@@ -163,35 +163,35 @@ public class PlayerMovement : MonoBehaviour
     //This detect the triggers in the scene, change the cam fields of view
     private void OnTriggerEnter(Collider other)
     {
-        print("player movement collides with " + other.name);
+        
 
-        if (other.gameObject.CompareTag("FarChurch") && !isActiveFar)
-        {
-            EventManager._cameraFarChurch.Invoke();
-            isActiveFar = true;
-            isActiveZoom = false;
-        }
+        //if (other.gameObject.CompareTag("FarChurch") && !isActiveFar)
+        //{
+        //    EventManager._cameraFarChurch.Invoke();
+        //    isActiveFar = true;
+        //    isActiveZoom = false;
+        //}
 
-        if (other.gameObject.CompareTag("ZoomChurch") && !isActiveZoom)
-        {
-            EventManager._cameraZoomChurch.Invoke();
-            isActiveZoom = true;
-            isActiveFar = false;
-        }
+        //if (other.gameObject.CompareTag("ZoomChurch") && !isActiveZoom)
+        //{
+        //    EventManager._cameraZoomChurch.Invoke();
+        //    isActiveZoom = true;
+        //    isActiveFar = false;
+        //}
 
-        if (other.gameObject.CompareTag("FarHotel") && !isActiveFar)
-        {
-            EventManager._cameraFarHotel.Invoke();
-            isActiveFar = true;
-            isActiveZoom = false;
-        }
+        //if (other.gameObject.CompareTag("FarHotel") && !isActiveFar)
+        //{
+        //    EventManager._cameraFarHotel.Invoke();
+        //    isActiveFar = true;
+        //    isActiveZoom = false;
+        //}
 
-        if (other.gameObject.CompareTag("ZoomHotel") && !isActiveZoom)
-        {
-            EventManager._cameraZoomHotel.Invoke();
-            isActiveZoom = true;
-            isActiveFar = false;
-        }
+        //if (other.gameObject.CompareTag("ZoomHotel") && !isActiveZoom)
+        //{
+        //    EventManager._cameraZoomHotel.Invoke();
+        //    isActiveZoom = true;
+        //    isActiveFar = false;
+        //}
 
 
         if (other.gameObject.CompareTag("Puerta"))

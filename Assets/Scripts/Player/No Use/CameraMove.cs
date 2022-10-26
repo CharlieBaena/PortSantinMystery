@@ -5,12 +5,13 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
 
-    [SerializeField] Vector3[] FarPostion;
+    [SerializeField] Vector3 FarPostion1, FarPsotion2;
     [SerializeField]float _currentTime, _duration;
-
+    
     public Transform _player;
     [SerializeField] float _smooth;
-    [SerializeField] Vector3 _offset, targetPosition;
+    [SerializeField] Vector3 _offset;
+    Vector3 targetPosition;
 
     bool changingCamera = false, fixedCamera = false;
 
@@ -20,10 +21,10 @@ public class CameraMove : MonoBehaviour
 
     void Start()
     {
-        EventManager._cameraFarChurch.AddListener(FarCameraChurch);
-        EventManager._cameraFarHotel.AddListener(FarCameraHotel);
-        EventManager._cameraZoomChurch.AddListener(ZoomCameraChurch);
-        EventManager._cameraZoomHotel.AddListener(ZoomCameraHotel);
+        //EventManager._cameraFarChurch.AddListener(FarCameraChurch);
+        //EventManager._cameraFarHotel.AddListener(FarCameraHotel);
+        //EventManager._cameraZoomChurch.AddListener(ZoomCameraChurch);
+        //EventManager._cameraZoomHotel.AddListener(ZoomCameraHotel);
         _mainCamera = Camera.main;
         
         _IsFar = false;
@@ -38,14 +39,15 @@ public class CameraMove : MonoBehaviour
             if (!fixedCamera)
             {
 
-
+                transform.LookAt(_player);
                 targetPosition = _player.position + _offset;
                 Vector3 smoothMove = Vector3.Lerp(transform.position, targetPosition, _smooth);
                 transform.position = smoothMove;
-                transform.LookAt(_player);
+                print(targetPosition);
             }
             
         }
+        
         
     }
 
@@ -73,7 +75,10 @@ public class CameraMove : MonoBehaviour
             _coroutine = StartCoroutine(ZoomSmoothChurch());
          
             _IsFar = false;
+            fixedCamera = false;
         }
+
+
     }
 
 
@@ -101,6 +106,7 @@ public class CameraMove : MonoBehaviour
             _coroutine = StartCoroutine(ZoomSmoothHotel());
 
             _IsFar = false;
+            fixedCamera = false;
         }
 
     }
@@ -112,8 +118,8 @@ public class CameraMove : MonoBehaviour
         while(_currentTime < _duration)
         {
             _currentTime += Time.deltaTime;
-            _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, FarPostion[1], _currentTime / _duration);
-           // print(_currentTime);
+            _mainCamera.transform.position = Vector3.Lerp(transform.position, FarPsotion2, _currentTime / _duration);
+           
            
             yield return null;
     
@@ -127,27 +133,29 @@ public class CameraMove : MonoBehaviour
     IEnumerator ZoomSmoothChurch()
     {
         changingCamera = true;
-        while (_currentTime < 1)
+        while (_currentTime < 0.5f)
         {
-            _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, targetPosition, _currentTime);
+            _mainCamera.transform.position = Vector3.Lerp(transform.position, targetPosition, _currentTime/_duration);
            
-            float _smoothSpeed = 0.1f;
-            _currentTime += Time.deltaTime * _smoothSpeed;
-            print(_currentTime + "    " + (_currentTime / _duration));
+           
+            _currentTime += Time.deltaTime ;
+           
             yield return null;
         }
         changingCamera = false;
-        fixedCamera = false;
+        //fixedCamera = false;
+        
     }
 
 
     IEnumerator FarSmoothHotel()
     {
+        
         changingCamera = true;
-        while (_currentTime < _duration)
+        while (_currentTime <_duration)
         {
             _currentTime += Time.deltaTime;
-            _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, FarPostion[0], _currentTime/_duration);
+            _mainCamera.transform.position = Vector3.Lerp(transform.position, FarPostion1, _currentTime/_duration);
 
             yield return null;
         }
@@ -157,17 +165,18 @@ public class CameraMove : MonoBehaviour
 
     IEnumerator ZoomSmoothHotel()
     {
+        
         changingCamera = true;
         while (_currentTime < _duration)
         {
-            _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, targetPosition, _currentTime / _duration);
+            _mainCamera.transform.position = Vector3.Lerp(transform.position, targetPosition, _currentTime/_duration);
 
-
-            _currentTime += Time.deltaTime;
+            
+            _currentTime += Time.deltaTime ;
             yield return null;
         }
         changingCamera = false;
-        fixedCamera = false;
+        
     }
 
 

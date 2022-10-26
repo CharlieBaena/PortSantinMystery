@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Far
-  - Zoom
+  - FarChurch
+  - FarHotel
+  - ZoomChurch
+  - ZoomHotel
   layers:
   - Default
   - TransparentFX

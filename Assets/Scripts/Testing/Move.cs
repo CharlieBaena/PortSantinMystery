@@ -34,19 +34,19 @@ public class Move : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Far") && !isActiveFar)
-        {
-            EventManager._cameraFar.Invoke();
-            isActiveFar = true;
-            isActiveZoom = false;
-        }
+        //if(other.gameObject.CompareTag("Far") && !isActiveFar)
+        //{
+        //    EventManager._cameraFar.Invoke();
+        //    isActiveFar = true;
+        //    isActiveZoom = false;
+        //}
 
-        if(other.gameObject.CompareTag("Zoom") && !isActiveZoom)
-        {
-            EventManager._cameraZoom.Invoke();
-            isActiveZoom = true;
-            isActiveFar = false;
-        }
+        //if(other.gameObject.CompareTag("Zoom") && !isActiveZoom)
+        //{
+        //    EventManager._cameraZoom.Invoke();
+        //    isActiveZoom = true;
+        //    isActiveFar = false;
+        //}
         
 
     }

@@ -5,13 +5,14 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
 
-    [SerializeField] float _FarAmount, _ZoomAmount;
+    [SerializeField] Vector3[] FarPostion;
     [SerializeField]float _currentTime, _duration;
 
-    public Transform _Target;
+    public Transform _player;
     [SerializeField] float _smooth;
-    [SerializeField] Vector3 _offset;
+    [SerializeField] Vector3 _offset, targetPosition;
 
+    bool changingCamera = false, fixedCamera = false;
 
     bool _IsFar;
     Camera _mainCamera;
@@ -19,8 +20,10 @@ public class CameraMove : MonoBehaviour
 
     void Start()
     {
-        EventManager._cameraFar.AddListener(FarCamera);
-        EventManager._cameraZoom.AddListener(ZoomCamera);
+        EventManager._cameraFarChurch.AddListener(FarCameraChurch);
+        EventManager._cameraFarHotel.AddListener(FarCameraHotel);
+        EventManager._cameraZoomChurch.AddListener(ZoomCameraChurch);
+        EventManager._cameraZoomHotel.AddListener(ZoomCameraHotel);
         _mainCamera = Camera.main;
         
         _IsFar = false;
@@ -30,15 +33,23 @@ public class CameraMove : MonoBehaviour
     void FixedUpdate()
     {
 
-        Vector3 DestinyPosition = _Target.position + _offset;
-        Vector3 SmoothMove = Vector3.Lerp(transform.position, DestinyPosition, _smooth);
-        transform.position = SmoothMove;
+        if(!changingCamera)
+        {
+            if (!fixedCamera)
+            {
 
 
-        transform.LookAt(_Target);
+                targetPosition = _player.position + _offset;
+                Vector3 smoothMove = Vector3.Lerp(transform.position, targetPosition, _smooth);
+                transform.position = smoothMove;
+                transform.LookAt(_player);
+            }
+            
+        }
+        
     }
 
-    private void FarCamera()
+    private void FarCameraChurch()
     {
         _currentTime = 0;
         if(_coroutine != null)
@@ -46,11 +57,11 @@ public class CameraMove : MonoBehaviour
             StopCoroutine(_coroutine);
         }
 
-        _coroutine = StartCoroutine(FarSmooth());
+        _coroutine = StartCoroutine(FarSmoothChurch());
         _IsFar = true;
     }
 
-    private void ZoomCamera()
+    private void ZoomCameraChurch()
     {
         if(_IsFar)
         {
@@ -59,38 +70,105 @@ public class CameraMove : MonoBehaviour
             {
                 StopCoroutine(_coroutine);
             }
-            _coroutine = StartCoroutine(ZoomSmooth());
+            _coroutine = StartCoroutine(ZoomSmoothChurch());
          
             _IsFar = false;
         }
     }
 
 
-    IEnumerator FarSmooth()
+    private void FarCameraHotel()
     {
+        _currentTime = 0;
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
 
+        _coroutine = StartCoroutine(FarSmoothHotel());
+        _IsFar = true;
+    }
+
+    private void ZoomCameraHotel()
+    {
+        if (_IsFar)
+        {
+            _currentTime = 0;
+            if (_coroutine != null)
+            {
+                StopCoroutine(_coroutine);
+            }
+            _coroutine = StartCoroutine(ZoomSmoothHotel());
+
+            _IsFar = false;
+        }
+
+    }
+
+
+    IEnumerator FarSmoothChurch()
+    {
+        changingCamera = true;
         while(_currentTime < _duration)
         {
             _currentTime += Time.deltaTime;
-            _mainCamera.fieldOfView = Mathf.Lerp(_mainCamera.fieldOfView, _FarAmount, _currentTime/_duration * Time.fixedDeltaTime);
+            _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, FarPostion[1], _currentTime / _duration);
+           // print(_currentTime);
            
             yield return null;
-        }
+    
+       }
+        changingCamera = false;
+        fixedCamera = true;
+
     }
 
-    IEnumerator ZoomSmooth()
-    {
 
+    IEnumerator ZoomSmoothChurch()
+    {
+        changingCamera = true;
+        while (_currentTime < 1)
+        {
+            _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, targetPosition, _currentTime);
+           
+            float _smoothSpeed = 0.1f;
+            _currentTime += Time.deltaTime * _smoothSpeed;
+            print(_currentTime + "    " + (_currentTime / _duration));
+            yield return null;
+        }
+        changingCamera = false;
+        fixedCamera = false;
+    }
+
+
+    IEnumerator FarSmoothHotel()
+    {
+        changingCamera = true;
         while (_currentTime < _duration)
         {
-            _mainCamera.fieldOfView = Mathf.Lerp(_mainCamera.fieldOfView, _ZoomAmount, _currentTime / _duration * Time.fixedDeltaTime);
-           
+            _currentTime += Time.deltaTime;
+            _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, FarPostion[0], _currentTime/_duration);
+
+            yield return null;
+        }
+        changingCamera = false;
+        fixedCamera = true;
+    }
+
+    IEnumerator ZoomSmoothHotel()
+    {
+        changingCamera = true;
+        while (_currentTime < _duration)
+        {
+            _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, targetPosition, _currentTime / _duration);
+
 
             _currentTime += Time.deltaTime;
             yield return null;
         }
-
+        changingCamera = false;
+        fixedCamera = false;
     }
-   
+
 
 }

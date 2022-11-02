@@ -10,13 +10,12 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI speakerName, dialogue, navButtonText;
     public Image speakerSprite;
 
-    private int currentIndex;
+    [SerializeField]private int currentIndex;
     private Conversation currentConvo;
     private static DialogueManager instance;
     private Coroutine typing;
 
-    UserActions _controls;
-    private InputAction NextLine;
+    [SerializeField] GameObject _dialogueBox;
 
     private void Awake()
     {
@@ -28,39 +27,30 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        _controls = new UserActions();
     }
-
-    private void OnEnabled()
+    private void Start()
     {
-        print("E");
-        NextLine = _controls.UI.NextLine;
-        NextLine.Enable();
-        NextLine.performed += ReadNext;
 
-    }
-
-    private void OnDisable()
-    {
-        print("D");
-        NextLine.Disable();
+        _dialogueBox = GameObject.Find("DialogueBox");
     }
 
     public static void StartConversation(Conversation convo)
     {
+       
         instance.currentIndex = 0;
         instance.currentConvo = convo;
         instance.speakerName.text = "";
         instance.dialogue.text = "";
         instance.navButtonText.text = ">";
 
-        instance.ReadNext(new InputAction.CallbackContext());
+        instance.ReadNext();
     }
 
-    public void ReadNext(InputAction.CallbackContext context)
+
+    public void ReadNext()
     {
-        if(currentIndex> currentConvo.GetLength())
+        
+        if(currentIndex > currentConvo.GetLength())
         {
 
             return;
@@ -84,11 +74,17 @@ public class DialogueManager : MonoBehaviour
         currentIndex++;
 
 
-        if(currentIndex >= currentConvo.GetLength())
+        if(currentIndex == currentConvo.GetLength())
         {
-            this.gameObject.SetActive(false);
-            navButtonText.text = "x";
+            GlobalBools._EndLineDialogue = true;
+            //navButtonText.text = "x";
         }
+    }
+
+    public void EndDialogue()
+    {
+        _dialogueBox.SetActive(false);
+        currentIndex = 0;
     }
 
     private IEnumerator TypeText(string text)
@@ -102,7 +98,7 @@ public class DialogueManager : MonoBehaviour
         {
             dialogue.text += text[index];
             index++;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.06f);
 
             if(index == text.Length)
             {

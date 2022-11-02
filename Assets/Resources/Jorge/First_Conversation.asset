@@ -25,8 +25,8 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bb4559b0869e3764eaf1e6ab15a44626, type: 2}
     dialogue: "C\xE9sar Merino"
   - speaker: {fileID: 11400000, guid: be02e3aee1348f346bb3bb8351d0e3cc, type: 2}
-    dialogue: "Ya..... Tenga las llaves. Es la primera plnata. habitaci\xF3n 4."
-  - speaker: {fileID: 0}
+    dialogue: "Ya..... Tenga las llaves. Es la primera planta. habitaci\xF3n 4."
+  - speaker: {fileID: 11400000, guid: bb4559b0869e3764eaf1e6ab15a44626, type: 2}
     dialogue: "Gracias. \xBFSe encuentra qu\xED, Diego?"
   - speaker: {fileID: 11400000, guid: be02e3aee1348f346bb3bb8351d0e3cc, type: 2}
     dialogue: "Oh..... s\xED mmmm... Respecto a eso\n.........\n\nMejor hable con

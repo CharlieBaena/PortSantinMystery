@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8402854811693187077}
   - component: {fileID: 8402854811693187194}
   - component: {fileID: 8402854811693187073}
+  - component: {fileID: 1672348392}
   m_Layer: 0
   m_Name: FirstPlayerPrefab
   m_TagString: Player
@@ -127,6 +128,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveType: 2
-  WalkingSpeed: 0
-  RunningSpeed: 0
+  WalkingSpeed: 2
+  RunningSpeed: 5
   ActualSpeed: 0
+--- !u!114 &1672348392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402854811693187195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9500c8e18ec084087ebb43e1b1e4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

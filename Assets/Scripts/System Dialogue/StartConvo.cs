@@ -5,12 +5,14 @@ using UnityEngine;
 public class StartConvo : MonoBehaviour
 {
    public Conversation convo;
+
     [SerializeField] GameObject _dialogueBox;
 
     private void Start()
     {
         _dialogueBox = GameObject.Find("DialogueBox");
-        
+
+
         EventManager._Talk.AddListener(CheckConve);
 
         _dialogueBox.SetActive(false);
@@ -19,7 +21,9 @@ public class StartConvo : MonoBehaviour
 
     public void StartConve()
     {
+        GlobalBools._nextLineActive = true;
         DialogueManager.StartConversation(convo);
+      
     }
 
     public void CheckConve()
@@ -60,8 +64,9 @@ public class StartConvo : MonoBehaviour
         {
             if (GlobalBools._stage1)
             {
-                convo = Resources.Load<Conversation>("Jorge / First_Conversation");
+                convo = Resources.Load<Conversation>("Jorge/First_Conversation");
                 _dialogueBox.SetActive(true);
+                StartConve();
             }
         }
 

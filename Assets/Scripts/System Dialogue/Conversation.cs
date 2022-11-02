@@ -13,6 +13,6 @@ public class Conversation : ScriptableObject
 
     public int GetLength()
     {
-        return allLines.Length - 1;
+        return allLines.Length;
     }
 }

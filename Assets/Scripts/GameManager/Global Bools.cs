@@ -9,6 +9,7 @@ public static class GlobalBools
 
     //Si esta en el rango del jugador un NPC este se activara. Permitiendo que el jugador pueda interactuar con el npc//
     public static bool _canTalk = false;
+    public static bool _nextLineActive = false;
 
     //NPCS
     public static bool _driverTalking = false;
@@ -22,6 +23,7 @@ public static class GlobalBools
 
     public static bool _canOpenDoor = false;
     public static bool _OpenInventory = false;
+    public static bool _EndLineDialogue = false;
 
     public static bool _run = false;
 

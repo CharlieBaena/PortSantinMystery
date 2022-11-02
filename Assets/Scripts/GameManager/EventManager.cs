@@ -16,7 +16,7 @@ public static class EventManager
     public static UnityEvent _OpenInventory = new UnityEvent();
     public static UnityEvent _CloseInventory = new UnityEvent();
 
-    public static UnityEvent _DoorDetect = new UnityEvent();
+    public static UnityEvent _changeScene = new UnityEvent();
 
     public static UnityEvent _StartFeedback = new UnityEvent();
     public static UnityEvent _StopFeedback = new UnityEvent();

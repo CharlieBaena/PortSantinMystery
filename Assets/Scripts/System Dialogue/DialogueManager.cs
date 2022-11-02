@@ -34,7 +34,7 @@ public class DialogueManager : MonoBehaviour
 
     private void OnEnabled()
     {
-
+        print("E");
         NextLine = _controls.UI.NextLine;
         NextLine.Enable();
         NextLine.performed += ReadNext;
@@ -43,8 +43,8 @@ public class DialogueManager : MonoBehaviour
 
     private void OnDisable()
     {
+        print("D");
         NextLine.Disable();
-
     }
 
     public static void StartConversation(Conversation convo)
@@ -86,7 +86,7 @@ public class DialogueManager : MonoBehaviour
 
         if(currentIndex >= currentConvo.GetLength())
         {
-
+            this.gameObject.SetActive(false);
             navButtonText.text = "x";
         }
     }

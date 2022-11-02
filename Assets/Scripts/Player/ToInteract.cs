@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ToInteract : MonoBehaviour
 {
-    public KeyCode _Interact, _Inventory;
+   
 
     [SerializeField] UserActions _controls;
     private InputAction Interact;
@@ -23,7 +23,7 @@ public class ToInteract : MonoBehaviour
         Interact = _controls.Player.Interactue;
         Interact.Enable();
         Interact.performed += StartInteract;
-
+       
         Inventory = _controls.Player.Inventory;
         Inventory.Enable();
         Inventory.performed += OpenInventory;
@@ -38,11 +38,11 @@ public class ToInteract : MonoBehaviour
 
     private void OpenInventory(InputAction.CallbackContext context)
     {
-        print("Va");
+        
         if (!GlobalBools._OpenInventory)
         {
 
-            print("Va");
+            
             GlobalBools._OpenInventory = true;
             EventManager._OpenInventory.Invoke();
 
@@ -59,14 +59,16 @@ public class ToInteract : MonoBehaviour
 
     private void StartInteract(InputAction.CallbackContext context)
     {
+        
         if (GlobalBools._canTalk)
         {
             EventManager._Talk.Invoke();
+            
         }
 
         if (GlobalBools._canOpenDoor)
         {
-            EventManager._DoorDetect.Invoke();
+            EventManager._changeScene.Invoke();
         }
     }
 }

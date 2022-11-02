@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         //We ge the direction from the input horizontal (a / d)
         // direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         
-        direction = move.ReadValue<Vector2>();
+        //direction = move.ReadValue<Vector2>();
     }
 
     void FixedUpdate()
@@ -93,6 +93,8 @@ public class PlayerMovement : MonoBehaviour
                 MovePositionMovement();
                 break;
         }
+
+        direction = move.ReadValue<Vector2>();
     }
 
 
@@ -109,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             GlobalBools._run = false;
-            print(GlobalBools._run);
+            
         }
         
     }
@@ -163,70 +165,41 @@ public class PlayerMovement : MonoBehaviour
     //This detect the triggers in the scene, change the cam fields of view
     private void OnTriggerEnter(Collider other)
     {
-        
-
-        //if (other.gameObject.CompareTag("FarChurch") && !isActiveFar)
-        //{
-        //    EventManager._cameraFarChurch.Invoke();
-        //    isActiveFar = true;
-        //    isActiveZoom = false;
-        //}
-
-        //if (other.gameObject.CompareTag("ZoomChurch") && !isActiveZoom)
-        //{
-        //    EventManager._cameraZoomChurch.Invoke();
-        //    isActiveZoom = true;
-        //    isActiveFar = false;
-        //}
-
-        //if (other.gameObject.CompareTag("FarHotel") && !isActiveFar)
-        //{
-        //    EventManager._cameraFarHotel.Invoke();
-        //    isActiveFar = true;
-        //    isActiveZoom = false;
-        //}
-
-        //if (other.gameObject.CompareTag("ZoomHotel") && !isActiveZoom)
-        //{
-        //    EventManager._cameraZoomHotel.Invoke();
-        //    isActiveZoom = true;
-        //    isActiveFar = false;
-        //}
-
 
         if (other.gameObject.CompareTag("Puerta"))
         {
             EventManager._StartFeedback.Invoke();
             GlobalBools._canOpenDoor = true;
+            print("Puedes abrir");
         }
 
-        if(other.gameObject.CompareTag("Driver"))
-        {
-            EventManager._StartFeedback.Invoke();
-            GlobalBools._canTalk = true;
-            GlobalBools._driverTalking = true;
-        }
+        //if(other.gameObject.CompareTag("Driver"))
+        //{
+        //    EventManager._StartFeedback.Invoke();
+        //    GlobalBools._canTalk = true;
+        //    GlobalBools._driverTalking = true;
+        //}
 
-        if(other.gameObject.CompareTag("Reviewer"))
-        {
-            EventManager._StartFeedback.Invoke();
-            GlobalBools._canTalk = true;
-            GlobalBools._reviewerTalking = true;
-        }
+        //if(other.gameObject.CompareTag("Reviewer"))
+        //{
+        //    EventManager._StartFeedback.Invoke();
+        //    GlobalBools._canTalk = true;
+        //    GlobalBools._reviewerTalking = true;
+        //}
 
-        if(other.gameObject.CompareTag("Luna"))
-        {
-            EventManager._StartFeedback.Invoke();
-            GlobalBools._canTalk = true;
-            GlobalBools._lunaTalking = true;
-        }
+        //if(other.gameObject.CompareTag("Luna"))
+        //{
+        //    EventManager._StartFeedback.Invoke();
+        //    GlobalBools._canTalk = true;
+        //    GlobalBools._lunaTalking = true;
+        //}
 
-        if(other.gameObject.CompareTag("Centurion"))
-        {
-            EventManager._StartFeedback.Invoke();
-            GlobalBools._canTalk = true;
-            GlobalBools._centurionTalking = true;
-        }
+        //if(other.gameObject.CompareTag("Centurion"))
+        //{
+        //    EventManager._StartFeedback.Invoke();
+        //    GlobalBools._canTalk = true;
+        //    GlobalBools._centurionTalking = true;
+        //}
 
         if (other.gameObject.CompareTag("Jorge"))
         {

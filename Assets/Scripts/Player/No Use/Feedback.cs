@@ -10,8 +10,8 @@ public class Feedback : MonoBehaviour
 
     void Start()
     {
-        EventManager._StartFeedback.AddListener(StartTimer);
-        EventManager._StopFeedback.AddListener(StopTimer);
+        //EventManager._StartFeedback.AddListener(StartTimer);
+        //EventManager._StopFeedback.AddListener(StopTimer);
     }
 
     // Update is called once per frame

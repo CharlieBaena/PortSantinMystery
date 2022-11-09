@@ -6,7 +6,7 @@ public class Speaker  : ScriptableObject
 {
 
    [SerializeField] private string speakerName;
-   [SerializeField] private Sprite speakerSprite;
+   //[SerializeField] private Sprite speakerSprite;
 
 
     public string GetName()
@@ -14,8 +14,8 @@ public class Speaker  : ScriptableObject
         return speakerName;
     }
 
-    public Sprite GetSprite()
-    {
-        return speakerSprite;
-    }
+    //public Sprite GetSprite()
+    //{
+    //    return speakerSprite;
+    //}
 }

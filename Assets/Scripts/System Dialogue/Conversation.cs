@@ -5,6 +5,7 @@ public class Conversation : ScriptableObject
 {
 
     [SerializeField]private DialogueLine[] allLines;
+    
 
     public DialogueLine GetLineByIndex(int index)
     {
@@ -15,4 +16,6 @@ public class Conversation : ScriptableObject
     {
         return allLines.Length;
     }
+
+    
 }

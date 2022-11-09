@@ -8,7 +8,8 @@ using UnityEngine.InputSystem;
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI speakerName, dialogue, navButtonText;
-    public Image speakerSprite;
+    public Image speakerSprite1;
+    public Image speakerSprite2;
 
     [SerializeField]private int currentIndex;
     private Conversation currentConvo;
@@ -32,6 +33,9 @@ public class DialogueManager : MonoBehaviour
     {
 
         _dialogueBox = GameObject.Find("DialogueBox");
+
+        
+        
     }
 
     public static void StartConversation(Conversation convo)
@@ -44,6 +48,8 @@ public class DialogueManager : MonoBehaviour
         instance.navButtonText.text = ">";
 
         instance.ReadNext();
+
+
     }
 
 
@@ -70,7 +76,9 @@ public class DialogueManager : MonoBehaviour
             typing = instance.StartCoroutine(TypeText(currentConvo.GetLineByIndex(currentIndex).dialogue));
         }
        
-        speakerSprite.sprite = currentConvo.GetLineByIndex(currentIndex).speaker.GetSprite();
+        speakerSprite1.sprite = currentConvo.GetLineByIndex(currentIndex)._SpritePortrains1;
+        speakerSprite2.sprite = currentConvo.GetLineByIndex(currentIndex)._SpritePortrains2;
+        
        
         currentIndex++;
 

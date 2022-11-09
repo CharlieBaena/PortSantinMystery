@@ -14,24 +14,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allLines:
   - speaker: {fileID: 11400000, guid: be02e3aee1348f346bb3bb8351d0e3cc, type: 2}
+    _SpritePortrains1: {fileID: 21300000, guid: 8074d14ec6ac1d441bd956ef3efc3c2b, type: 3}
+    _SpritePortrains2: {fileID: 21300000, guid: d6a64af300f477d4d9efcd68e1f1e389, type: 3}
     dialogue: '.......
 
 
       Oh!......Hola'
   - speaker: {fileID: 11400000, guid: bb4559b0869e3764eaf1e6ab15a44626, type: 2}
+    _SpritePortrains1: {fileID: 0}
+    _SpritePortrains2: {fileID: 0}
     dialogue: "Buenas. ten\xEDa una reserva."
-  - speaker: {fileID: 11400000, guid: d467f435e93e38948b78eb4be7cd9665, type: 2}
+  - speaker: {fileID: 0}
+    _SpritePortrains1: {fileID: 0}
+    _SpritePortrains2: {fileID: 0}
     dialogue: "C\xE9sar.....\n.................."
   - speaker: {fileID: 11400000, guid: bb4559b0869e3764eaf1e6ab15a44626, type: 2}
+    _SpritePortrains1: {fileID: 0}
+    _SpritePortrains2: {fileID: 0}
     dialogue: "C\xE9sar Merino"
-  - speaker: {fileID: 11400000, guid: 10a46fcefe7348542bc9147524cb53fe, type: 2}
+  - speaker: {fileID: 0}
+    _SpritePortrains1: {fileID: 0}
+    _SpritePortrains2: {fileID: 0}
     dialogue: "Ya..... Tenga las llaves. Es la primera planta. habitaci\xF3n 4."
   - speaker: {fileID: 11400000, guid: bb4559b0869e3764eaf1e6ab15a44626, type: 2}
+    _SpritePortrains1: {fileID: 0}
+    _SpritePortrains2: {fileID: 0}
     dialogue: "Gracias. \xBFSe encuentra qu\xED, Diego?"
-  - speaker: {fileID: 11400000, guid: fb4d336470c0ef94e86758ae7ae000a8, type: 2}
+  - speaker: {fileID: 0}
+    _SpritePortrains1: {fileID: 0}
+    _SpritePortrains2: {fileID: 0}
     dialogue: "Oh..... s\xED mmmm... Respecto a eso\n.........\n\nMejor hable con
       mi padre, tiene un despacho en la planta de abajo."
   - speaker: {fileID: 11400000, guid: bb4559b0869e3764eaf1e6ab15a44626, type: 2}
+    _SpritePortrains1: {fileID: 0}
+    _SpritePortrains2: {fileID: 0}
     dialogue: "............\nDe acuerdo, creo que me instalar\xE9 primero. Gracias."
   - speaker: {fileID: 11400000, guid: be02e3aee1348f346bb3bb8351d0e3cc, type: 2}
+    _SpritePortrains1: {fileID: 0}
+    _SpritePortrains2: {fileID: 0}
     dialogue: ..................................
+  spriteSpeaker1:
+    speaker: {fileID: 0}
+    _SpritePortrains1: {fileID: 0}
+    _SpritePortrains2: {fileID: 0}
+    dialogue: 
+  spriteSpeaker2:
+    speaker: {fileID: 0}
+    _SpritePortrains1: {fileID: 0}
+    _SpritePortrains2: {fileID: 0}
+    dialogue: 

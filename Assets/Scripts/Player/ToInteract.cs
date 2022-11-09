@@ -58,18 +58,18 @@ public class ToInteract : MonoBehaviour
     private void OpenInventory(InputAction.CallbackContext context)
     {
         
-        if (!GlobalBools._OpenInventory)
+        if (!GlobalBools._canOpenInventory)
         {
 
             
-            GlobalBools._OpenInventory = true;
+            GlobalBools._canOpenInventory = true;
             EventManager._OpenInventory.Invoke();
 
         }
         else
         {
 
-            GlobalBools._OpenInventory = false;
+            GlobalBools._canOpenInventory = false;
             EventManager._CloseInventory.Invoke();
 
 
@@ -78,22 +78,30 @@ public class ToInteract : MonoBehaviour
 
     private void StartInteract(InputAction.CallbackContext context)
     {
-        
-        if (GlobalBools._canTalk)
+        if (!GlobalBools._isWaitingForInteractue)
         {
-            EventManager._Talk.Invoke();
-            
+            if (GlobalBools._canTalk)
+            {
+                EventManager._Talk.Invoke();
+                GlobalBools._isWaitingForInteractue = true;
+
+            }
         }
 
-        if (GlobalBools._canOpenDoor)
+        if(!GlobalBools._isWaitingForInteractue)
         {
-            EventManager._changeScene.Invoke();
+            if (GlobalBools._canOpenDoor)
+            {
+                EventManager._changeScene.Invoke();
+                GlobalBools._isWaitingForInteractue = true;
+            }
         }
+        
     }
 
     public void NextLineText(InputAction.CallbackContext context)
     {
-        if (!GlobalBools._EndLineDialogue)
+        if (!GlobalBools._isEndLineDialogue)
         {
             dialogueManager.ReadNext();
             return;

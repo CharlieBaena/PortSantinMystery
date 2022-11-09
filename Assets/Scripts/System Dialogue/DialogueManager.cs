@@ -71,12 +71,14 @@ public class DialogueManager : MonoBehaviour
         }
        
         speakerSprite.sprite = currentConvo.GetLineByIndex(currentIndex).speaker.GetSprite();
+       
         currentIndex++;
 
 
         if(currentIndex == currentConvo.GetLength())
         {
-            GlobalBools._EndLineDialogue = true;
+            GlobalBools._isEndLineDialogue = true;
+
             //navButtonText.text = "x";
         }
     }
@@ -84,6 +86,9 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         _dialogueBox.SetActive(false);
+
+        GlobalBools._isWaitingForInteractue = false;
+
         currentIndex = 0;
     }
 

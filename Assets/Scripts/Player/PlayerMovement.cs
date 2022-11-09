@@ -105,12 +105,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (pressedDown)
         {
-            GlobalBools._run = true;
+            GlobalBools._isRunning = true;
             
         }
         else
         {
-            GlobalBools._run = false;
+            GlobalBools._isRunning = false;
             
         }
         
@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void AddingForceMovement()
     {
-        if (GlobalBools._run)
+        if (GlobalBools._isRunning)
         {
             ActualSpeed = RunningSpeed;
         }
@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void VelocityMovement()
     {
-        if (GlobalBools._run)
+        if (GlobalBools._isRunning)
         {
             ActualSpeed = RunningSpeed;
         }
@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePositionMovement()
     {
-        if (GlobalBools._run)
+        if (GlobalBools._isRunning)
         {
             ActualSpeed = RunningSpeed;
         }
@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //EventManager._StartFeedback.Invoke();
             GlobalBools._canTalk = true;
-            GlobalBools._jorgeTalking = true;
+            GlobalBools._isjorgeTalking = true;
         }
 
     }
@@ -222,35 +222,42 @@ public class PlayerMovement : MonoBehaviour
         {
             //EventManager._StopFeedback.Invoke();
             GlobalBools._canTalk = false;
-            GlobalBools._driverTalking = false;
+            GlobalBools._isdriverTalking = false;
         }
 
         if (other.gameObject.CompareTag("Reviewer"))
         {
             //EventManager._StopFeedback.Invoke();
             GlobalBools._canTalk = false;
-            GlobalBools._reviewerTalking = false;
+            GlobalBools._isreviewerTalking = false;
+        }
+
+        if (other.gameObject.CompareTag("Prayer"))
+        {
+            //EventManager._StopFeedback.Invoke();
+            GlobalBools._canTalk = false;
+            GlobalBools._isreviewerTalking = false;
         }
 
         if (other.gameObject.CompareTag("Luna"))
         {
             //EventManager._StopFeedback.Invoke();
             GlobalBools._canTalk = false;
-            GlobalBools._lunaTalking = false;
+            GlobalBools._islunaTalking = false;
         }
 
         if (other.gameObject.CompareTag("Centurion"))
         {
             //EventManager._StopFeedback.Invoke();
             GlobalBools._canTalk = false;
-            GlobalBools._centurionTalking = false;
+            GlobalBools._iscenturionTalking = false;
         }
 
         if (other.gameObject.CompareTag("Jorge"))
         {
             //EventManager._StopFeedback.Invoke();
             GlobalBools._canTalk = false;
-            GlobalBools._jorgeTalking = false;
+            GlobalBools._isjorgeTalking = false;
         }
 
     }

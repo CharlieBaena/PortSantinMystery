@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     
-    [SerializeField] GameObject _Panel, Archive1, Archive2, Archive3, Archive4, KeyBottom, GamePadBottom, Npc1, Npc2, Npc3, Npc4;
+    [SerializeField] GameObject _Panel, Archive1, Archive2, Archive3, Archive4, KeyBottom, GamePadBottom, _reviewer, _driver, _jorge, _luna, _centurion, _prayer;
 
     private void Start()
     {
@@ -20,10 +20,12 @@ public class Inventory : MonoBehaviour
     {
         _Panel.SetActive(true);
         Archive1.SetActive(true);
-        Npc1.SetActive(false);
-        Npc2.SetActive(false);
-        Npc3.SetActive(false);
-        Npc4.SetActive(false);
+        _reviewer.SetActive(false);
+        _driver.SetActive(false);
+        _jorge.SetActive(false);
+        _luna.SetActive(false);
+        _prayer.SetActive(false);
+        _centurion.SetActive(false);
     }
 
     private void CloseWindow()
@@ -90,34 +92,62 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public void NPC1()
+    public void Reviewer()
     {
-        Npc1.SetActive(true);
-        Npc2.SetActive(false);
-        Npc3.SetActive(false);
-        Npc4.SetActive(false);
+        _reviewer.SetActive(true);
+        _driver.SetActive(false);
+        _jorge.SetActive(false);
+        _luna.SetActive(false);
+        _prayer.SetActive(false);
+        _centurion.SetActive(false);
     }
-    public void NPC2()
+    public void Driver()
     {
-        Npc1.SetActive(false);
-        Npc2.SetActive(true);
-        Npc3.SetActive(false);
-        Npc4.SetActive(false);
+        _reviewer.SetActive(false);
+        _driver.SetActive(true);
+        _jorge.SetActive(false);
+        _luna.SetActive(false);
+        _prayer.SetActive(false);
+        _centurion.SetActive(false);
     }
-    public void NPC3()
+    public void Jorge()
     {
 
-        Npc1.SetActive(false);
-        Npc2.SetActive(false);
-        Npc3.SetActive(true);
-        Npc4.SetActive(false);
+        _reviewer.SetActive(false);
+        _driver.SetActive(false);
+        _jorge.SetActive(true);
+        _luna.SetActive(false);
+        _prayer.SetActive(false);
+        _centurion.SetActive(false);
     }
-    public void NPC4()
+    public void Luna()
     {
-        Npc1.SetActive(false);
-        Npc2.SetActive(false);
-        Npc3.SetActive(false);
-        Npc4.SetActive(true);
+        _reviewer.SetActive(false);
+        _driver.SetActive(false);
+        _jorge.SetActive(false);
+        _luna.SetActive(true); 
+        _prayer.SetActive(false);
+        _centurion.SetActive(false);
+    }
+
+    public void Prayer()
+    {
+        _reviewer.SetActive(false);
+        _driver.SetActive(false);
+        _jorge.SetActive(false);
+        _luna.SetActive(false);
+        _prayer.SetActive(true);
+        _centurion.SetActive(false);
+    }
+
+    public void Centurion()
+    {
+        _reviewer.SetActive(false);
+        _driver.SetActive(false);
+        _jorge.SetActive(false);
+        _luna.SetActive(false);
+        _prayer.SetActive(false);
+        _centurion.SetActive(true);
     }
 
 }

@@ -28,7 +28,7 @@ public class StartConvo : MonoBehaviour
 
     public void CheckConve()
     {
-        //if(GlobalBools._driverTalking)
+        //if(GlobalBools._isdriverTalking)
         //{
         //    if(GlobalBools._stage1)
         //    {
@@ -36,7 +36,7 @@ public class StartConvo : MonoBehaviour
         //    }
         //}
 
-        //if (GlobalBools._reviewerTalking)
+        //if (GlobalBools._isreviewerTalking)
         //{
         //    if (GlobalBools._stage1)
         //    {
@@ -44,7 +44,7 @@ public class StartConvo : MonoBehaviour
         //    }
         //}
 
-        //if (GlobalBools._lunaTalking)
+        //if (GlobalBools._islunaTalking)
         //{
         //    if (GlobalBools._stage1)
         //    {
@@ -52,24 +52,36 @@ public class StartConvo : MonoBehaviour
         //    }
         //}
 
-        //if (GlobalBools._centurionTalking)
+        //if (GlobalBools._iscenturionTalking)
         //{
         //    if (GlobalBools._stage1)
         //    {
 
         //    }
         //}
-
-        if (GlobalBools._jorgeTalking)
+        if (GlobalBools._canJorgeTalkMore)
         {
-            if (GlobalBools._stage1)
+            if (GlobalBools._isjorgeTalking)
             {
-                convo = Resources.Load<Conversation>("Jorge/First_Conversation");
-                _dialogueBox.SetActive(true);
-                StartConve();
+                if (GlobalBools._stage1)
+                {
+
+                    convo = Resources.Load<Conversation>("Jorge/First_Conversation");
+                    _dialogueBox.SetActive(true);
+                    GlobalBools._canMoreTalk = true;
+                    StartConve();
+                }
+
+                if (GlobalBools._canMoreTalk)
+                {
+                    //convo = Resources.Load<Conversation>("Jorge/
+                    _dialogueBox.SetActive(true);
+                    GlobalBools._canMoreTalk = true;
+                    StartConve();
+                    GlobalBools._canJorgeTalkMore = false;
+                }
             }
+
         }
-
-
     }
 }

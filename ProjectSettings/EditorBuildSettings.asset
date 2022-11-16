@@ -4,5 +4,26 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: c99d3b7ae2edcb049a9526b648172abe
+  - enabled: 1
+    path: Assets/Scenes/IntroCinematicScene.unity
+    guid: ac9b44e0880e5b34fbbd968227374490
+  - enabled: 1
+    path: Assets/Scenes/InsideTrainScene.unity
+    guid: 25301ab4e5df8e445890ef8ae1e4adf9
+  - enabled: 1
+    path: Assets/Scenes/TrainStationScene.unity
+    guid: ef574a911b06a734598917c2bb61ce8e
+  - enabled: 1
+    path: Assets/Scenes/OutsideHotelScene.unity
+    guid: bf9198b122936754b976b8a39ed8d5dd
+  - enabled: 1
+    path: Assets/Scenes/InsideHotelScene.unity
+    guid: fff095c5ff9d45d4eaa9f7e8bd9491e9
+  - enabled: 1
+    path: Assets/Scenes/ChurchScene.unity
+    guid: cfcf5b01b1c25da48800ad0f1180e8ff
   m_configObjects: {}
